@@ -18,6 +18,7 @@ app.listen(process.env.REACT_APP_SERVER_PORT, () => {
 });
 
 app.get('/test', (req, res) => {
+  console.log(process.env.MYSQL_HOST_IP)
   const { table } = req.query;
 
   pool.query(`select * from ${table}`, (err, results) => {

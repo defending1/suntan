@@ -8,5 +8,6 @@ COPY yarn.lock /app
 COPY . /app
 
 RUN yarn install
+RUN yarn run
 
 CMD ["yarn", "start"]
