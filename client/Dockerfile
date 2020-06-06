@@ -1,12 +1,14 @@
 FROM node:10-alpine
 
 RUN mkdir -p /app
-WORKDIR /app
 
-COPY package.json /app
-COPY yarn.lock /app
-COPY . /app
+# Create app directory
+WORKDIR /usr/src/app
+
+# Copy project files into the docker image
+COPY . .
 
 RUN yarn install
 
 CMD ["yarn", "start"]
+CMD ["yarn", "storybook"]

@@ -16,6 +16,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "storybook": "start-storybook",
     "prettier": "prettier --write \"./**/*.js\"",
     "eject": "react-scripts eject"
   },
@@ -35,6 +36,7 @@
     ]
   },
   "devDependencies": {
+    "@storybook/react": "^5.3.19",
     "prettier": "^2.0.5"
   }
 }
