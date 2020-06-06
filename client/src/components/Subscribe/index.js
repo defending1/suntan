@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import { Top } from "./Top/index";
 import { Form } from "./Form/index";
 
@@ -8,5 +8,5 @@ export const Subscribe = () => {
       <Top />
       <Form />
     </div>
-  )
-}
+  );
+};

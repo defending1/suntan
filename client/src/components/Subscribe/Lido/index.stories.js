@@ -1,30 +1,25 @@
 import React from "react";
-import { Container, Input, Text, Button } from '../style'
+import { Container, Input, Text, Button } from "../style";
 import { useForm } from "react-hook-form";
 export default { title: "form/Lido" };
 
-
 export const Lido = () => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = values => console.log(values);
+  const onSubmit = (values) => console.log(values);
   return (
     <Container onSubmit={handleSubmit(onSubmit)}>
-    <h1>Lido</h1>
-      <Input
-      ref={register}
-        name="Nome"
-        placeholder="Nome"
-      />
+      <h1>Lido</h1>
+      <Input ref={register} name="Nome" placeholder="Nome" />
       <Text
-      rows="5"
-      cols="80"
+        rows="5"
+        cols="80"
         name="Descrizione"
-ref={register}
+        ref={register}
         placeholder="Descrizione"
       />
 
       <Input
-      ref={register}
+        ref={register}
         name="Capienza"
         type="number"
         placeholder="Capienza"
