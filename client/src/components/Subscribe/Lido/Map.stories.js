@@ -2,9 +2,9 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 import LocationPicker from "react-leaflet-location-picker";
-export default { title: "form/MyComponent" };
+export default { title: "form/Mappa" };
 
-export const MyComponent = () => {
+export const Mappa = () => {
   const pointVals = [[50, 2]];
   const pointMode = {
     banner: true,

@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useState } from "react";
 import { Container, Input, Text, Button } from "../style";
 import { useForm } from "react-hook-form";
+import { Mappa } from './Map.stories.js'
 export default { title: "form/Lido" };
 
 export const Lido = () => {
+  const coordinates = [[50, 2]];
   const { register, handleSubmit } = useForm();
   const onSubmit = (values) => console.log(values);
   return (
@@ -24,6 +26,7 @@ export const Lido = () => {
         type="number"
         placeholder="Capienza"
       />
+      <Mappa pointVals={coordinates}/>
       <Button type="submit">Submit</Button>
     </Container>
   );

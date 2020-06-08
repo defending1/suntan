@@ -1,8 +1,9 @@
 import React from "react";
-import { Container, Input, Button } from "./style";
+import { Container, Input, Button } from "../style";
 import { useForm } from "react-hook-form";
+export default { title: "form/Ob" };
 
-export const Form = () => {
+export const Ob = () => {
   const { register, handleSubmit } = useForm();
   const onSubmit = (values) => console.log(values);
   return (
