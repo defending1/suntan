@@ -10,14 +10,34 @@ CREATE TABLE CODICE_SANITARIO
     Accettato BOOLEAN NOT NULL,
     Rimborsabile BOOLEAN NOT NULL,
     PRIMARY KEY (ID)
-)
-
+);
 
 INSERT INTO CODICE_SANITARIO 
 VALUES 
 ("Rosso-303", "Rosso", "3", "0", "0"),
 ("Giallo-201", "Giallo", "2", "0", "1"),
 ("Verde-110", "Verde", "1", "1", "0");
+
+
+CREATE TABLE TIPO
+(
+    ID CHAR (20) NOT NULL,
+    Nome CHAR (20) NOT NULL,
+    Prezzo_ora FLOAT,
+    PRIMARY KEY (ID)
+);
+
+CREATE TABLE LIDO
+(
+    ID CHAR(30) NOT NULL,
+    Nome VARCHAR(20) NOT NULL,
+    Descrizione VARCHAR(200),
+    Capienza INT,
+    Coordinate VARCHAR(20) NOT NULL,
+    PRIMARY KEY(ID)
+);
+
+
 
 
 CREATE TABLE PERSONA
@@ -34,15 +54,7 @@ CREATE TABLE PERSONA
     PRIMARY KEY (Mail),
     FOREIGN KEY (ID_Rischio) REFERENCES CODICE_SANITARIO(ID),
     FOREIGN KEY (ID_Ospite) REFERENCES PERSONA(Mail)
-)
-
-CREATE TABLE TIPO
-(
-    ID CHAR (20) NOT NULL,
-    Nome CHAR (20) NOT NULL,
-    Prezzo_ora FLOAT,
-    PRIMARY KEY (ID)
-)
+);
 
 CREATE TABLE OMBRELLONE
 (
@@ -101,15 +113,6 @@ VALUES
         "1", "SDRAIO_PREMIUM", "20"
 );
 
-CREATE TABLE LIDO
-(
-    ID CHAR(30) NOT NULL,
-    Nome VARCHAR(20) NOT NULL,
-    Descrizione VARCHAR(200),
-    Capienza INT,
-    Coordinate VARCHAR(20) NOT NULL,
-    PRIMARY KEY(ID),
-);
 
 
 

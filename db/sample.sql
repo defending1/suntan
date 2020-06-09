@@ -28,42 +28,101 @@ SET time_zone = "+00:00";
 -- Table structure for table `sample`
 --
 
-CREATE TABLE `sample` (
-  `id` int(255) NOT NULL,
-  `name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+create database beach;
+use beach;
 
---
--- Dumping data for table `sample`
---
 
-INSERT INTO `sample` (`id`, `name`) VALUES
-(1, 'andrew'),
-(2, 'brian'),
-(3, 'charles'),
-(4, 'david');
+CREATE TABLE CODICE_SANITARIO
+(
+    ID CHAR(20) NOT NULL,
+    Colore CHAR (10) NOT NULL,
+    Rischio INT NOT NULL,
+    Accettato BOOLEAN NOT NULL,
+    Rimborsabile BOOLEAN NOT NULL,
+    PRIMARY KEY (ID)
+);
 
---
--- Indexes for dumped tables
---
+INSERT INTO CODICE_SANITARIO 
+VALUES 
+("Rosso-303", "Rosso", "3", "0", "0"),
+("Giallo-201", "Giallo", "2", "0", "1"),
+("Verde-110", "Verde", "1", "1", "0");
 
---
--- Indexes for table `sample`
---
-ALTER TABLE `sample`
-  ADD PRIMARY KEY (`id`);
 
---
--- AUTO_INCREMENT for dumped tables
---
+CREATE TABLE TIPO
+(
+    ID CHAR (20) NOT NULL,
+    Nome CHAR (20) NOT NULL,
+    Prezzo_ora FLOAT,
+    PRIMARY KEY (ID)
+);
 
---
--- AUTO_INCREMENT for table `sample`
---
-ALTER TABLE `sample`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-COMMIT;
+CREATE TABLE LIDO
+(
+    ID CHAR(30) NOT NULL,
+    Nome VARCHAR(20) NOT NULL,
+    Descrizione VARCHAR(200),
+    Capienza INT,
+    Coordinate VARCHAR(20) NOT NULL,
+    PRIMARY KEY(ID)
+);
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+CREATE TABLE PERSONA
+(
+    Mail VARCHAR(100) NOT NULL,
+    ID_Rischio CHAR(20) NOT NULL,
+    ID_Ospite VARCHAR(50),
+    Password VARCHAR (50) NOT NULL,
+    Nome VARCHAR(20) NOT NULL,
+    Cognome VARCHAR(20) NOT NULL,
+    Data_Nascita DATE,
+    Residenza VARCHAR(20),
+    Tempo_Permanenza TIME,
+    PRIMARY KEY (Mail),
+    FOREIGN KEY (ID_Rischio) REFERENCES CODICE_SANITARIO(ID),
+    FOREIGN KEY (ID_Ospite) REFERENCES PERSONA(Mail)
+);
+
+CREATE TABLE OMBRELLONE
+(
+    ID CHAR(10) NOT NULL,
+    ID_Lido CHAR(30) NOT NULL,
+    ID_Persona VARCHAR(50),
+    ID_Tipo CHAR(20) NOT NULL,
+    Numero_serie CHAR(10) NOT NULL,
+    Coordinate VARCHAR(100),
+    Capienza INT,
+    PRIMARY KEY (ID),
+    FOREIGN KEY (ID_Lido) REFERENCES LIDO(ID),
+    FOREIGN KEY (ID_Tipo) REFERENCES TIPO(ID),
+    FOREIGN KEY (ID_Persona) REFERENCES PERSONA(Mail)
+);
+
+CREATE TABLE SDRAIO
+(
+    ID CHAR(10) NOT NULL,
+    ID_Lido CHAR(30) NOT NULL,
+    ID_Persona VARCHAR(50),
+    ID_Tipo CHAR(20) NOT NULL,
+    Numero_serie CHAR(10) NOT NULL,
+    Coordinate VARCHAR(100),
+    Colore CHAR(10),
+    PRIMARY KEY (ID),
+    FOREIGN KEY (ID_Lido) REFERENCES LIDO(ID),
+    FOREIGN KEY (ID_Tipo) REFERENCES TIPO(ID),
+    FOREIGN KEY (ID_Persona) REFERENCES PERSONA(Mail)
+);
+
+CREATE TABLE POSTO_LIBERO
+(
+    ID CHAR(10) NOT NULL,
+    ID_Lido CHAR(30) NOT NULL,
+    ID_Persona VARCHAR(50),
+    PRIMARY KEY (ID),
+    FOREIGN KEY (ID_Lido) REFERENCES LIDO(ID),
+    FOREIGN KEY (ID_Persona) REFERENCES PERSONA(Mail)
+);
+
