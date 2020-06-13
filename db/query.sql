@@ -1,22 +1,26 @@
--- Tutte le persone con codice rosso
-SELECT COUNT(Mail)
-FROM PERSONA P
-    JOIN CODICE_SANITARIO C
-    ON P.ID_Rischio = C.ID
-WHERE C.Colore = "Rosso";
-
--- Tutti gli oggetti liberi in un lido
-SELECT *
-FROM LIDO L
-    JOIN OMBRELLONE O
-    ON L.ID = O.ID_Lido 
-    JOIN POSTO_LIBERO P
-    ON L.ID = P.ID_Lido 
-    JOIN SDRAIO S
-    ON L.ID = S.ID_Lido 
-WHERE L.Nome = "Blu"
-
 
 -- Tutti i lidi 
 SELECT Nome, Descrizione
-FROM Lido;
+FROM STABILIMENTO_BALNEARE;
+
+--Il numero degli infetti in uno stabilimento
+CREATE VIEW ID_PERSONE_ROSSE AS
+SELECT C.ID FROM CLIENTE C 
+JOIN STATO_SALUTE S 
+  ON C.ID_Salute = S.ID 
+WHERE S.Colore = "Rosso";
+
+CREATE VIEW STABILIMENTO_PRENOTAZIONE_CLIENTE AS
+SELECT ID_Stabilimento, ID_Prenotazione, ID_Cliente
+FROM PRENOTAZIONE P
+JOIN PRENOTAZIONE_POSTO P_P 
+    ON P.ID = P_P.ID_Prenotazione
+JOIN POSTO PO 
+    ON P_P.ID_Posto = PO.ID 
+
+SELECT COUNT(I.ID) FROM ID_PERSONE_ROSSE I 
+JOIN STABILIMENTO_PRENOTAZIONE_CLIENTE SPC 
+    ON SPC.ID_Cliente = I.ID 
+JOIN STABILIMENTO_BALNEARE S 
+    ON S.ID = SPC.ID_Stabilimento
+WHERE S.Nome = "Lido Blu"; 
