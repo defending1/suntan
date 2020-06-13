@@ -54,21 +54,6 @@ app.post('/add_client', function(req, res) {
       message: "New user added successfully"
     })
   })
-
-  /*
-  let sql = `INSERT INTO users(name, gender) VALUES (?)`;
-  let values = [
-    req.body.name,
-    req.body.gender
-  ];
-  db.query(sql, [values], function(err, data, fields) {
-    if (err) throw err;
-    res.json({
-      status: 200,
-      message: "New user added successfully"
-    })
-  })
-  */
 });
 
 
