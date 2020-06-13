@@ -7,7 +7,7 @@ export const Top = () => {
   return (
     <div>
       <Container>
-        <H1>dd</H1>
+        <H1>Registrazione</H1>
       </Container>
     </div>
   );

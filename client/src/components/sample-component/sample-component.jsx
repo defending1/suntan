@@ -11,6 +11,7 @@ function callServer() {
   });
 }
 
+
 export function SampleComponent() {
   return (
     <div>

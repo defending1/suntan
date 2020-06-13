@@ -1,6 +1,7 @@
-const cors = require('cors');
-const express = require('express');
-const mysql = require('mysql');
+import cors from 'cors'
+import express from 'express'
+import mysql  from 'mysql'
+import bodyParser from 'body-parser'
 
 const app = express();
 
@@ -12,13 +13,14 @@ const pool = mysql.createPool({
 });
 
 app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.listen(process.env.REACT_APP_SERVER_PORT, () => {
   console.log(`App server now listening on port ${process.env.REACT_APP_SERVER_PORT}`);
 });
 
-app.get('/test', (req, res) => {
-  console.log(process.env.MYSQL_HOST_IP)
+app.get('/get_data', (req, res) => {
   const { table } = req.query;
 
   pool.query(`select * from ${table}`, (err, results) => {
@@ -28,4 +30,49 @@ app.get('/test', (req, res) => {
       return res.send(results);
     }
   });
+});
+
+app.post('/add_client', function(req, res) {
+  const data = req.body.params.values
+
+  const received = {
+    "ID": null,
+    "ID_Sanitario": null,
+    "ID_Ospite": null,
+    "Nome": data.Nome,
+    "Cognome": data.Cognome,
+    "Mail": data.Mail,
+    "Password": data.Password,
+    "Data_Nascita": data.Data_Nascita,
+    "Residenza": data.Residenza
+  }
+  pool.query(`INSERT INTO CLIENTE SET ?`, received, (err, rows) => {
+    if (err) throw err;
+    res.json({
+      status: 200,
+      message: "New user added successfully"
+    })
+  })
+
+  /*
+  let sql = `INSERT INTO users(name, gender) VALUES (?)`;
+  let values = [
+    req.body.name,
+    req.body.gender
+  ];
+  db.query(sql, [values], function(err, data, fields) {
+    if (err) throw err;
+    res.json({
+      status: 200,
+      message: "New user added successfully"
+    })
+  })
+  */
+});
+
+
+app.post('/close', (req, res) => {
+  console.log(process.env.MYSQL_HOST_IP)
+  const { table } = req.query;
+  console.log(table)
 });

@@ -27,6 +27,7 @@ CREATE TABLE TIPO
     PRIMARY KEY (ID)
 );
 
+
 CREATE TABLE LIDO
 (
     ID CHAR(30) NOT NULL,
@@ -37,7 +38,19 @@ CREATE TABLE LIDO
     PRIMARY KEY(ID)
 );
 
-
+INSERT INTO LIDO 
+VALUES 
+("LidoB1000[2000, 2000]", "Lido Blu", "Lorem ipsum", "1000", "[2000, 2000]"),
+("LidoR1000[4242, 2000]", "Lido Rosso", "Lorem ipsum", "1000", "[4242, 2000]"),
+("Lido 100", "Lido 100", "Lorem ipsum", "1000", "[2000, 2423]"),
+("Baia Verde", "Baia Verde", "Lorem ipsum", "1334", "[2000, 1325]"),
+("Mykonos", "Mykonos", "Lorem ipsum", "1000", "[6766, 2000]"),
+("P2", "P2", "Lorem ipsum", "1000", "[2000, 2342]"),
+("CoccoLido", "Cocco Lido", "Lorem ipsum", "3452", "[1324, 2000]"),
+("LidoBlu1000", "Lido Blu", "Lorem ipsum", "1000", "[2000, 2000]"),
+("LidoBlu2332", "Lido Blu", "Lorem ipsum", "2332", "[2000, 4646]"),
+("LidoBlu3455", "Lido Blu", "Lorem ipsum", "3455", "[2000, 1246]"),
+("LidoBlu2332", "Lido Blu", "Lorem ipsum", "2332", "[1463, 2000]");
 
 
 CREATE TABLE PERSONA
@@ -101,16 +114,16 @@ CREATE TABLE POSTO_LIBERO
 INSERT INTO TIPO
 VALUES
     (
-        "1", "POSTO_LIBERO", "0"
+        "POSTO_LIBERO0", "POSTO_LIBERO", "0"
 ),
     (
-        "1", "OMBRELLONE_STANDARD", "10"
+        "OMBRELLONE_STANDARD10", "OMBRELLONE_STANDARD", "10"
 ),
     (
-        "1", "OMBRELLONE_PREMIUM", "20"
+        "OMBRELLONE_PREMIUM20", "OMBRELLONE_PREMIUM", "20"
 ),
     (
-        "1", "SDRAIO_PREMIUM", "20"
+        "SDRAIO_PREMIUM20", "SDRAIO_PREMIUM", "20"
 );
 
 
