@@ -21,8 +21,8 @@ app.listen(process.env.REACT_APP_SERVER_PORT, () => {
 });
 
 app.get('/get_data', (req, res) => {
-  const { table } = req.query;
-
+  console.log(req.query)
+  const { table } = req.query
   pool.query(`select * from ${table}`, (err, results) => {
     if (err) {
       return res.send(err);
@@ -37,7 +37,7 @@ app.post('/add_client', function(req, res) {
 
   const received = {
     "ID": null,
-    "ID_Sanitario": null,
+    "ID_Salute": null,
     "ID_Ospite": null,
     "Nome": data.Nome,
     "Cognome": data.Cognome,
@@ -46,6 +46,7 @@ app.post('/add_client', function(req, res) {
     "Data_Nascita": data.Data_Nascita,
     "Residenza": data.Residenza
   }
+
   pool.query(`INSERT INTO CLIENTE SET ?`, received, (err, rows) => {
     if (err) throw err;
     res.json({
