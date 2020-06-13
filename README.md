@@ -1,4 +1,5 @@
-## Suntan ![logo](./logo.svg){:height="5%"}
+## Suntan 
+![logo](./logo.svg)
 
 ## Installation
 ```
